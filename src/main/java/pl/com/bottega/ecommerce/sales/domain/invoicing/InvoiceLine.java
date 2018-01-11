@@ -14,26 +14,23 @@
  * limitations under the License.
  */
 /**
- * 
+ *
  */
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
 
+import com.sun.istack.internal.NotNull;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class InvoiceLine {
 
 	private ProductData product;
-
 	private int quantity;
-
 	private Money net;
-
 	private Money gros;
-
 	private Tax tax;
 
-	InvoiceLine(ProductData product, int quantity, Money net, Tax tax) {
+	InvoiceLine(@NotNull ProductData product,@NotNull int quantity,@NotNull Money net,@NotNull Tax tax) {
 		this.product = product;
 		this.quantity = quantity;
 		this.net = net;

@@ -15,71 +15,65 @@
  */
 package pl.com.bottega.ecommerce.sales.domain.purchase;
 
+import com.sun.istack.internal.NotNull;
+import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
+import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
+import pl.com.bottega.ecommerce.sharedkernel.Money;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
-import pl.com.bottega.ecommerce.sharedkernel.Money;
-
 public class Purchase {
 
-	private List<PurchaseItem> items;
+    private List<PurchaseItem> items;
+    private boolean paid;
+    private ClientData clientData;
+    private Date purchaseDate;
+    private Money totalCost;
+    private Id aggregateId;
 
-	private boolean paid;
+    @SuppressWarnings("unused") private Purchase() {
+    }
 
-	private ClientData clientData;
+    Purchase(@NotNull Id aggregateId,@NotNull ClientData clientData,@NotNull List<PurchaseItem> items,
+            @NotNull Date purchaseDate,@NotNull boolean paid,
+            Money totalCost) {
+        this.aggregateId = aggregateId;
+        this.clientData = clientData;
+        this.items = items;
+        this.purchaseDate = purchaseDate;
+        this.paid = paid;
+        this.totalCost = totalCost;
+    }
 
-	private Date purchaseDate;
+    public void confirm() {
+        paid = true;
+    }
 
-	private Money totalCost;
+    public boolean isPaid() {
+        return paid;
+    }
 
-	private Id aggregateId;
+    public Money getTotalCost() {
+        return totalCost;
+    }
 
-	@SuppressWarnings("unused")
-	private Purchase() {
-	}
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
 
-	Purchase(Id aggregateId, ClientData clientData,
-			List<PurchaseItem> items, Date purchaseDate, boolean paid,
-			Money totalCost) {
-		this.aggregateId = aggregateId;
-		this.clientData = clientData;
-		this.items = items;
-		this.purchaseDate = purchaseDate;
-		this.paid = paid;
-		this.totalCost = totalCost;
-	}
+    public ClientData getClientData() {
+        return clientData;
+    }
 
-	public void confirm() {
-		paid = true;
-	}
+    public Collection<PurchaseItem> getItems() {
+        return (Collection<PurchaseItem>) Collections.unmodifiableCollection(items);
+    }
 
-	public boolean isPaid() {
-		return paid;
-	}
-
-	public Money getTotalCost() {
-		return totalCost;
-	}
-
-	public Date getPurchaseDate() {
-		return purchaseDate;
-	}
-
-	public ClientData getClientData() {
-		return clientData;
-	}
-
-	public Collection<PurchaseItem> getItems() {
-		return (Collection<PurchaseItem>) Collections
-				.unmodifiableCollection(items);
-	}
-
-	public Id getAggregateId() {
-		return this.aggregateId;
-	}
+    public Id getAggregateId() {
+        return this.aggregateId;
+    }
 
 }

@@ -17,26 +17,22 @@ package pl.com.bottega.ecommerce.sales.domain.productscatalog;
 
 import java.util.Date;
 
-
-
+import com.sun.istack.internal.NotNull;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 public class ProductData {
 	private Id productId;
 	private Money price;
-	
 	private String name;
-	
 	private Date snapshotDate;
-		
 	private ProductType type;
 
 	
 	@SuppressWarnings("unused")
 	private ProductData(){}
 	
-	ProductData(Id productId, Money price, String name, ProductType type, 
+	ProductData(@NotNull Id productId,@NotNull Money price,@NotNull String name,@NotNull ProductType type,
 			Date snapshotDate) {
 		this.productId = productId;
 		this.price = price;
@@ -101,9 +97,7 @@ public class ProductData {
 				return false;
 		} else if (!productId.equals(other.productId))
 			return false;
-		if (type != other.type)
-			return false;
-		return true;
+		return type == other.type;
 	}
 	
 

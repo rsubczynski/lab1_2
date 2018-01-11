@@ -15,28 +15,32 @@
  */
 package pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage;
 
-
+import com.sun.istack.internal.NotNull;
 
 public class ClientData {
-	
-	private Id aggregateId;
-	
-	private String name;
 
-	@SuppressWarnings("unused")
-	private ClientData(){}
-	
-	public ClientData(Id aggregateId, String name) {
-		this.aggregateId = aggregateId;
-		this.name = name;
-	}
-	
-	public Id getAggregateId() {
-		return aggregateId;
-	}
-	
-	public String getName() {
-		return name;
-	}
+    private Id aggregateId;
+
+    private String name;
+
+    @SuppressWarnings("unused") private ClientData() {
+    }
+
+    public ClientData(
+            @NotNull
+                    Id aggregateId,
+            @NotNull
+                    String name) {
+        this.aggregateId = aggregateId;
+        this.name = name;
+    }
+
+    public Id getAggregateId() {
+        return aggregateId;
+    }
+
+    public String getName() {
+        return name;
+    }
 
 }

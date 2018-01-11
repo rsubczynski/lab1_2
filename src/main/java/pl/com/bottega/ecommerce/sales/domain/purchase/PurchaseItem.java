@@ -15,6 +15,7 @@
  */
 package pl.com.bottega.ecommerce.sales.domain.purchase;
 
+import com.sun.istack.internal.NotNull;
 import pl.com.bottega.ecommerce.sales.domain.productscatalog.ProductData;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
@@ -23,16 +24,13 @@ public class PurchaseItem {
 	
 
 	private ProductData productData;
-	
-	private int quantity;	
-	
-
+	private int quantity;
 	private Money totalCost;
 	
 	@SuppressWarnings("unused")
 	private PurchaseItem() {}
 	
-	public PurchaseItem(ProductData productData, int quantity, Money totalCost) {
+	public PurchaseItem(@NotNull ProductData productData,@NotNull int quantity,@NotNull Money totalCost) {
 		this.productData = productData;
 		this.quantity = quantity;
 		this.totalCost = totalCost;
