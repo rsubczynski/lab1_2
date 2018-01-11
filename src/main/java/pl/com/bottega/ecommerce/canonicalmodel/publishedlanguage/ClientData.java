@@ -26,10 +26,7 @@ public class ClientData {
     @SuppressWarnings("unused") private ClientData() {
     }
 
-    public ClientData(
-            @NotNull
-                    Id aggregateId,
-            @NotNull
+    public ClientData(@NotNull Id aggregateId, @NotNull
                     String name) {
         this.aggregateId = aggregateId;
         this.name = name;

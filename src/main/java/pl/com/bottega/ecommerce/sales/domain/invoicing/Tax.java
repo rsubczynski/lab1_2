@@ -24,8 +24,7 @@ public class Tax {
 
     private String description;
 
-    public Tax(
-            @NotNull Money amount, @NotNull String description) {
+    public Tax(@NotNull Money amount, @NotNull String description) {
         super();
         this.amount = amount;
         this.description = description;
