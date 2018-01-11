@@ -20,17 +20,18 @@ import java.util.List;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
 import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
+import pl.com.bottega.ecommerce.util.TaxUtilInterface;
 import pl.com.bottega.ecommerce.util.TaxUtils;
 
 public class BookKeeper {
 
-	public Invoice issuance(ClientData client, List<RequestItem> items) {
+	public Invoice issuance(ClientData client, List<RequestItem> items,TaxUtilInterface taxUtilInterface) {
 		Invoice invoice = new Invoice(Id.generate(), client);
 
 		for (RequestItem item : items) {
 			Money net = item.getTotalCost();
 
-			Tax tax = TaxUtils.createTax(item.getProductData().getType(), net);
+			Tax tax = taxUtilInterface.createTax(item.getProductData().getType(), net);
 			InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
 			invoice.addItem(invoiceLine);
 		}
