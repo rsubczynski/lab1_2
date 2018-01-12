@@ -30,7 +30,7 @@ public class InvoiceLine {
 	private Money gros;
 	private Tax tax;
 
-	InvoiceLine(@NotNull ProductData product,@NotNull int quantity,@NotNull Money net,@NotNull Tax tax) {
+	InvoiceLine(@NotNull ProductData product, int quantity, Money net, Tax tax) {
 		this.product = product;
 		this.quantity = quantity;
 		this.net = net;

@@ -22,9 +22,7 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 class RequestItem {
 
     private ProductData productData;
-
     private int quantity;
-
     private Money totalCost;
 
     public RequestItem(@NotNull ProductData productData, @NotNull int quantity, @NotNull Money totalCost) {

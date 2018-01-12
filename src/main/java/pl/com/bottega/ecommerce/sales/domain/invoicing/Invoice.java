@@ -32,10 +32,12 @@ public class Invoice {
     private List<InvoiceLine> items;
     private Id id;
 
+    private InvoiceLineListFactory invoiceLineListFactory;
+
     Invoice(@NotNull Id invoiceId,@NotNull ClientData client) {
         this.id = invoiceId;
         this.client = client;
-        this.items = new ArrayList<InvoiceLine>();
+        this.items = invoiceLineListFactory.createInvoiceLineList();
 
         this.net = Money.ZERO;
         this.gros = Money.ZERO;

@@ -14,26 +14,23 @@
  * limitations under the License.
  */
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
-
-import com.sun.istack.internal.NotNull;
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.ClientData;
-import pl.com.bottega.ecommerce.canonicalmodel.publishedlanguage.Id;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 import pl.com.bottega.ecommerce.util.TaxUtilInterface;
 
-import java.util.List;
-
 public class BookKeeper {
 
-    public Invoice issuance(@NotNull ClientData client, @NotNull List<RequestItem> items, @NotNull
-                    TaxUtilInterface taxUtilInterface) {
-        Invoice invoice = new Invoice(Id.generate(), client);
+    InvoiceFactory invoiceFactory = new InvoiceFactory();
+    InvoiceLineFactory invoiceLineFactory = new InvoiceLineFactory();
 
-        for (RequestItem item : items) {
+    public Invoice issuance(InvoiceRequest invoiceRequest, TaxUtilInterface taxInterface) {
+
+        Invoice invoice = invoiceFactory.createInvoice(invoiceRequest.getClientData());
+
+        for (RequestItem item : invoiceRequest.getItems()) {
             Money net = item.getTotalCost();
-
-            Tax tax = taxUtilInterface.createTax(item.getProductData().getType(), net);
-            InvoiceLine invoiceLine = new InvoiceLine(item.getProductData(), item.getQuantity(), net, tax);
+            Tax tax = taxInterface.createTax(item.getProductData().getType(), net);
+            InvoiceLine invoiceLine = invoiceLineFactory.createInvoiceLine(item.getProductData(), item.getQuantity(),
+                    net, tax);
             invoice.addItem(invoiceLine);
         }
 
