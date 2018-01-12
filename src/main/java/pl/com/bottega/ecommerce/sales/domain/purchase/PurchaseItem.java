@@ -21,8 +21,6 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 
 public class PurchaseItem {
-	
-
 	private ProductData productData;
 	private int quantity;
 	private Money totalCost;

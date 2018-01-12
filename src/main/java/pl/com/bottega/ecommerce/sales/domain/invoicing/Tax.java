@@ -21,7 +21,6 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 public class Tax {
 
     private Money amount;
-
     private String description;
 
     public Tax(@NotNull Money amount, @NotNull String description) {
