@@ -7,7 +7,7 @@ import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 import java.math.BigDecimal;
 
-public class TaxUtils implements TaxUtilInterface {
+public class TaxUtils implements TaxInterface {
 
     public Tax createTax(@NotNull ProductType productType, @NotNull Money net) {
         BigDecimal ratio = null;

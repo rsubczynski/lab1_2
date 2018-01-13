@@ -15,14 +15,14 @@
  */
 package pl.com.bottega.ecommerce.sales.domain.invoicing;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
-import pl.com.bottega.ecommerce.util.TaxUtilInterface;
+import pl.com.bottega.ecommerce.util.TaxInterface;
 
 public class BookKeeper {
 
     InvoiceFactory invoiceFactory = new InvoiceFactory();
     InvoiceLineFactory invoiceLineFactory = new InvoiceLineFactory();
 
-    public Invoice issuance(InvoiceRequest invoiceRequest, TaxUtilInterface taxInterface) {
+    public Invoice issuance(InvoiceRequest invoiceRequest, TaxInterface taxInterface) {
 
         Invoice invoice = invoiceFactory.createInvoice(invoiceRequest.getClientData());
 
